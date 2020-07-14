@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Database</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+    <center>
+        <div><h1>Database Region & Country </h1></div>
+        
+        <h2><a th:href='@{/save}'>Insert New Data</h2></a>
+        <form th:action="@{/}" th:object="${region}" >
+            <input type="text" name="keyword" id="keyword" th:value="${keyword}" size="50"/>
+            <input type="submit" value="Search By ID" /><br><br>
+     </form>
+        <table border="2" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tr th:action="@{/}" th:each="region : ${regions}" method="GET">
+                <td th:text="${region.id}"></td>
+                <td th:text="${region.name}"></td>
+                <td>
+                    <a th:href="@{'/edit/' + ${region.id}}">Edit</a>
+                    <a th:href="@{'/delete/' + ${region.id}}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </center>
+    </body>
+</html>
